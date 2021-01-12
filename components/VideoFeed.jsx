@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import VideoFeedItem from "./VideoFeedItem";
 
@@ -7,9 +8,10 @@ export default function VideoFeed({ data }) {
         <View style={styles.container}>
             <FlatList
                 data={data}
-                renderItem={({ item, index }) => {
-                    return <VideoFeedItem key={item.id.videoId + index.toString()} item={item} />
+                renderItem={({ item }) => {
+                    return <VideoFeedItem  item={item} />
                 }}
+                keyExtractor={(item) => item.id.videoId}
             />
         </View>
     );

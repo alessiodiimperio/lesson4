@@ -26,11 +26,18 @@ export default function App() {
             setIsFiltering(true);
             let mutable = data.slice();
             setFilteredData(
-                mutable.filter((item) => gititem.snippet.title.includes(query)
+                mutable.filter((item) => item.snippet.title.includes(query)
                 )
             );
         }
     };
+    useEffect(() => {
+      YouTubeService.fetchTrending()
+      .then(data => {
+        console.log(data)
+        setData(data.items)})
+      .catch(console.log)
+    }, [])
 
     return (
         <View style={styles.container}>
